@@ -7,7 +7,7 @@
 //
 
 #import "AwesomeMenuItem.h"
-static inline CGRect ScaleRect(CGRect rect, float n) {return CGRectMake((rect.size.width - rect.size.width * n)/ 2, (rect.size.height - rect.size.height * n) / 2, rect.size.width * n, rect.size.height * n);}
+static inline CGRect ScaleRect(CGRect rect, float n) {return CGRectMake((rect.size.width - rect.size.width * n)/ 2, (rect.size.height - rect.size.height * n) / 2, rect.size.width * n, rect.size.height * n);}  //static内联函数，只有本文件可见，拷贝到程序不用去外部读取代码，高效
 @implementation AwesomeMenuItem
 
 @synthesize contentImageView = _contentImageView;
@@ -61,7 +61,7 @@ highlightedContentImage:(UIImage *)hcimg;
 {
     // if move out of 2x rect, cancel highlighted.
     CGPoint location = [[touches anyObject] locationInView:self];
-    if (!CGRectContainsPoint(ScaleRect(self.bounds, 2.0f), location))
+    if (!CGRectContainsPoint(ScaleRect(self.bounds, 2.0f), location)) //新学，
     {
         self.highlighted = NO;
     }

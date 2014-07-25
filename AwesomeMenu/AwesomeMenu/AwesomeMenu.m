@@ -14,12 +14,12 @@ static CGFloat const kAwesomeMenuDefaultEndRadius = 120.0f;
 static CGFloat const kAwesomeMenuDefaultFarRadius = 140.0f;
 static CGFloat const kAwesomeMenuDefaultStartPointX = 160.0;
 static CGFloat const kAwesomeMenuDefaultStartPointY = 240.0;
-static CGFloat const kAwesomeMenuDefaultTimeOffset = 0.036f;
+static CGFloat const kAwesomeMenuDefaultTimeOffset = 1.036f;
 static CGFloat const kAwesomeMenuDefaultRotateAngle = 0.0;
 static CGFloat const kAwesomeMenuDefaultMenuWholeAngle = M_PI * 2;
 static CGFloat const kAwesomeMenuDefaultExpandRotation = M_PI;
 static CGFloat const kAwesomeMenuDefaultCloseRotation = M_PI * 2;
-static CGFloat const kAwesomeMenuDefaultAnimationDuration = 0.5f;
+static CGFloat const kAwesomeMenuDefaultAnimationDuration = 2.5f;
 static CGFloat const kAwesomeMenuStartMenuDefaultAnimationDuration = 0.3f;
 
 static CGPoint RotateCGPointAroundCenter(CGPoint point, CGPoint center, float angle)
@@ -60,16 +60,16 @@ static CGPoint RotateCGPointAroundCenter(CGPoint point, CGPoint center, float an
     if (self) {
         self.backgroundColor = [UIColor clearColor];
 		
-		self.nearRadius = kAwesomeMenuDefaultNearRadius;
-		self.endRadius = kAwesomeMenuDefaultEndRadius;
-		self.farRadius = kAwesomeMenuDefaultFarRadius;
-		self.timeOffset = kAwesomeMenuDefaultTimeOffset;
-		self.rotateAngle = kAwesomeMenuDefaultRotateAngle;
-		self.menuWholeAngle = kAwesomeMenuDefaultMenuWholeAngle;
-		self.startPoint = CGPointMake(kAwesomeMenuDefaultStartPointX, kAwesomeMenuDefaultStartPointY);
-        self.expandRotation = kAwesomeMenuDefaultExpandRotation;
+		self.nearRadius = kAwesomeMenuDefaultNearRadius; //回弹效果用的远，中，近的近
+		self.endRadius = kAwesomeMenuDefaultEndRadius;   //回弹效果用的远，中，近的远
+		self.farRadius = kAwesomeMenuDefaultFarRadius;   //回弹效果用的远，中，近的中
+		self.timeOffset = kAwesomeMenuDefaultTimeOffset; //单独一个menu弹出或收缩的时间间隔
+		self.rotateAngle = kAwesomeMenuDefaultRotateAngle;  //?起始的角度
+		self.menuWholeAngle = kAwesomeMenuDefaultMenuWholeAngle; //最后的角度
+		self.startPoint = CGPointMake(kAwesomeMenuDefaultStartPointX, kAwesomeMenuDefaultStartPointY); //起始的point
+        self.expandRotation = kAwesomeMenuDefaultExpandRotation; //旋转的弧度，下同
         self.closeRotation = kAwesomeMenuDefaultCloseRotation;
-        self.animationDuration = kAwesomeMenuDefaultAnimationDuration;
+        self.animationDuration = kAwesomeMenuDefaultAnimationDuration; //旋转动画的持续时间
         self.rotateAddButton = YES;
         
         self.menusArray = aMenusArray;
