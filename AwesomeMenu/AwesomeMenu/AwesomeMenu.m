@@ -14,7 +14,7 @@ static CGFloat const kAwesomeMenuDefaultEndRadius = 120.0f;
 static CGFloat const kAwesomeMenuDefaultFarRadius = 140.0f;
 static CGFloat const kAwesomeMenuDefaultStartPointX = 160.0;
 static CGFloat const kAwesomeMenuDefaultStartPointY = 240.0;
-static CGFloat const kAwesomeMenuDefaultTimeOffset = 1.036f;
+static CGFloat const kAwesomeMenuDefaultTimeOffset = 0.036f;
 static CGFloat const kAwesomeMenuDefaultRotateAngle = 0.0;
 static CGFloat const kAwesomeMenuDefaultMenuWholeAngle = M_PI * 2;
 static CGFloat const kAwesomeMenuDefaultExpandRotation = M_PI;
@@ -70,7 +70,7 @@ static CGPoint RotateCGPointAroundCenter(CGPoint point, CGPoint center, float an
         self.expandRotation = kAwesomeMenuDefaultExpandRotation; //旋转的弧度，下同
         self.closeRotation = kAwesomeMenuDefaultCloseRotation;
         self.animationDuration = kAwesomeMenuDefaultAnimationDuration; //旋转动画的持续时间
-        self.rotateAddButton = YES;
+        self.rotateAddButton = YES; // 这个没看出来是什么意思?
         
         self.menusArray = aMenusArray;
         
@@ -220,7 +220,10 @@ static CGPoint RotateCGPointAroundCenter(CGPoint point, CGPoint center, float an
     }
 }
 
-
+/**
+ *  展开前，准备各个item的起点终点和回弹点的位置
+ *  用三角函数就算上面点的位置
+ */
 - (void)_setMenu {
 	NSUInteger count = [_menusArray count];
     for (int i = 0; i < count; i ++)
@@ -302,8 +305,8 @@ static CGPoint RotateCGPointAroundCenter(CGPoint point, CGPoint center, float an
     rotateAnimation.values = [NSArray arrayWithObjects:[NSNumber numberWithFloat:expandRotation],[NSNumber numberWithFloat:0.0f], nil];
     rotateAnimation.duration = animationDuration;
     rotateAnimation.keyTimes = [NSArray arrayWithObjects:
-                                [NSNumber numberWithFloat:.3], 
-                                [NSNumber numberWithFloat:.4], nil]; 
+                                [NSNumber numberWithFloat:.1],
+                                [NSNumber numberWithFloat:.4], nil];
     
     CAKeyframeAnimation *positionAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
     positionAnimation.duration = animationDuration;

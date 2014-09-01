@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>4F845190-413F-4A06-BB74-B670E9EF4657</string>
+	<string>B69B8B75-73A9-4397-B475-48A95D1C59B8</string>
 	<key>IDESourceControlProjectName</key>
 	<string>AwesomeMenu</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>4AEBA182-B5BB-4710-8FD5-9C70C2DE8B93</key>
-		<string>https://github.com/pablosproject/AwesomeMenu.git</string>
+		<key>AE20908D-1C33-4452-88F6-5ED2D88E94C8</key>
+		<string>https://github.com/sseen/AwesomeMenu.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>AwesomeMenu.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>4AEBA182-B5BB-4710-8FD5-9C70C2DE8B93</key>
+		<key>AE20908D-1C33-4452-88F6-5ED2D88E94C8</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/pablosproject/AwesomeMenu.git</string>
+	<string>https://github.com/sseen/AwesomeMenu.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>4AEBA182-B5BB-4710-8FD5-9C70C2DE8B93</string>
+	<string>AE20908D-1C33-4452-88F6-5ED2D88E94C8</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>4AEBA182-B5BB-4710-8FD5-9C70C2DE8B93</string>
+			<string>AE20908D-1C33-4452-88F6-5ED2D88E94C8</string>
 			<key>IDESourceControlWCCName</key>
 			<string>AwesomeMenu</string>
 		</dict>
