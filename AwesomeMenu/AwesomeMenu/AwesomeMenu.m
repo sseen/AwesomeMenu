@@ -70,7 +70,7 @@ static CGPoint RotateCGPointAroundCenter(CGPoint point, CGPoint center, float an
         self.expandRotation = kAwesomeMenuDefaultExpandRotation; //旋转的弧度，下同
         self.closeRotation = kAwesomeMenuDefaultCloseRotation;
         self.animationDuration = kAwesomeMenuDefaultAnimationDuration; //旋转动画的持续时间
-        self.rotateAddButton = YES; // 这个没看出来是什么意思?
+        self.rotateAddButton = YES; // 这个没看出来是什么意思? 就是点击的触发按钮自身会不会动画
         
         self.menusArray = aMenusArray;
         
@@ -287,11 +287,16 @@ static CGPoint RotateCGPointAroundCenter(CGPoint point, CGPoint center, float an
     }
 }
 #pragma mark - Private methods
+/**
+ *  展开的动画效果
+ */
 - (void)_expand
 {
-	
+    NSLog(@"_flag : %d", _flag);
+	// 取消close
     if (_flag == [_menusArray count])
     {
+        NSLog(@"this is expanding, now cancel the animation");
         _isAnimating = NO;
         [_timer invalidate];
         _timer = nil;
@@ -301,12 +306,15 @@ static CGPoint RotateCGPointAroundCenter(CGPoint point, CGPoint center, float an
     NSUInteger tag = 1000 + _flag;
     AwesomeMenuItem *item = (AwesomeMenuItem *)[self viewWithTag:tag];
     
-    CAKeyframeAnimation *rotateAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation.z"];
+    CAKeyframeAnimation *rotateAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation.z"]; // 旋转，绕着z轴
+    // 这个value有个隐蔽的属性
+    // 前面的角度a大于后面的角度b，逆时针;反之，亦然
+    // index为0的角度如果不是0，那么animation开始之初就会先旋转到这个角度，当然是顺时针
     rotateAnimation.values = [NSArray arrayWithObjects:[NSNumber numberWithFloat:expandRotation],[NSNumber numberWithFloat:0.0f], nil];
     rotateAnimation.duration = animationDuration;
     rotateAnimation.keyTimes = [NSArray arrayWithObjects:
-                                [NSNumber numberWithFloat:.1],
-                                [NSNumber numberWithFloat:.4], nil];
+                                [NSNumber numberWithFloat:.3],
+                                [NSNumber numberWithFloat:.9], nil];
     
     CAKeyframeAnimation *positionAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
     positionAnimation.duration = animationDuration;
@@ -337,8 +345,11 @@ static CGPoint RotateCGPointAroundCenter(CGPoint point, CGPoint center, float an
 
 - (void)_close
 {
+    // 到最后一个时候，关闭timer资源
+    DebugLog(@"_flag : %d", _flag);
     if (_flag == -1)
     {
+        DebugLog(@"this is closing, now cancel the animation");
         _isAnimating = NO;
         [_timer invalidate];
         _timer = nil;
@@ -352,10 +363,10 @@ static CGPoint RotateCGPointAroundCenter(CGPoint point, CGPoint center, float an
     rotateAnimation.values = [NSArray arrayWithObjects:[NSNumber numberWithFloat:0.0f],[NSNumber numberWithFloat:closeRotation],[NSNumber numberWithFloat:0.0f], nil];
     rotateAnimation.duration = animationDuration;
     rotateAnimation.keyTimes = [NSArray arrayWithObjects:
-                                [NSNumber numberWithFloat:.0], 
+                                [NSNumber numberWithFloat:.0],
                                 [NSNumber numberWithFloat:.4],
                                 [NSNumber numberWithFloat:.5], nil]; 
-        
+    
     CAKeyframeAnimation *positionAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];
     positionAnimation.duration = animationDuration;
     CGMutablePathRef path = CGPathCreateMutable();
@@ -392,6 +403,8 @@ static CGPoint RotateCGPointAroundCenter(CGPoint point, CGPoint center, float an
         }
     }
 }
+
+// 选中的图标放大效果，渐变
 - (CAAnimationGroup *)_blowupAnimationAtPoint:(CGPoint)p
 {
     CAKeyframeAnimation *positionAnimation = [CAKeyframeAnimation animationWithKeyPath:@"position"];

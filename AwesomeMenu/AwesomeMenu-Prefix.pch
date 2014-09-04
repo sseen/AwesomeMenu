@@ -12,3 +12,14 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
+
+
+
+//#define DEBUG 0
+
+#ifdef DEBUG
+// # define DebugLog(fmt, ...) NSLog((@"[文件名:%s]""[函数名:%s]""[行号:%d] " fmt), __FILE__, __FUNCTION__, __LINE__, ##__VA_ARGS__);
+# define DebugLog(fmt, ...) NSLog((@"[Function:%s]""[Line:%d] " fmt), __FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+# define DebugLog(...);
+#endif
